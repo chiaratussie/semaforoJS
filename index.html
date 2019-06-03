@@ -24,6 +24,12 @@
                 margin: 0 auto;
                 margin-top: 10px;
                 margin-bottom: 10px;
+            }
+            .centrar {
+
+                text-align: center;
+                margin-top: 20px;
+            
             }    
             </style>
 </head>
@@ -33,19 +39,66 @@
                 <div class= "luz-semaforo" id=yellow></div>
                 <div class= "luz-semaforo" id=green></div>
             </div>
+            <div class="centrar">
+            <button onclick="onClickBotonCambiar()">CAMBIAR</button>
+        </div>
             <script>
                 function cambiarColorLuzSemaforo(id, prender)
                 {
                     //var color= 'grey';
                     //if(prender ) color=id;
                     //document.querySelector('#'+id).style.backgroundColor =color;
-                    var color = '';
+                    var color = 'grey';
                     if(prender == true) color=id;
                     document.getElementById(id).style.backgroundColor =color;
+
+                    //setInterval(onClickBotonCambiar,2000);
+
                 }
+                setInterval(onClickBotonCambiar,2000);
                 cambiarColorLuzSemaforo('red',true);
-                cambiarColorLuzSemaforo('yellow',false);
+                cambiarColorLuzSemaforo('yellow',!true);
                 cambiarColorLuzSemaforo('green',!true);
+                var estado = 0;
+            
+
+                function onClickBotonCambiar ()
+                {
+                    console.log(estado);
+                    
+                   switch (estado) {
+                    case 0:
+                    cambiarColorLuzSemaforo('red',true);
+                    cambiarColorLuzSemaforo('yellow',!true);
+                    cambiarColorLuzSemaforo('green',!true);
+                    break;
+                    case 1:
+                    cambiarColorLuzSemaforo('red',true);
+                    cambiarColorLuzSemaforo('yellow',true);
+                    cambiarColorLuzSemaforo('green',!true);
+                    break;
+                    case 2:
+                    cambiarColorLuzSemaforo('red',!true);
+                    cambiarColorLuzSemaforo('yellow',!true);
+                    cambiarColorLuzSemaforo('green',true);
+                    break;
+                    case 3:
+                    cambiarColorLuzSemaforo('red',!true);
+                    cambiarColorLuzSemaforo('yellow',true);
+                    cambiarColorLuzSemaforo('green',!true);
+                    break;
+                    default:
+                    cambiarColorLuzSemaforo('red',!true);
+                    cambiarColorLuzSemaforo('yellow',!true);
+                    cambiarColorLuzSemaforo('green',!true);
+                    break;
+                }
+                estado++;
+                    //if (estado>3) estado=0;
+                    estado &= 3; //IDIOMA BINARIO
+                   // console.log('Evento boton cambiar' + contador++);
+                } 
+                
             </script>
     
 </body>
